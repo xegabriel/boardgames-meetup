@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bg-authentication-deployment
+  namespace: bg-dev
+spec:
+  selector:
+    matchLabels:
+      app: bg-authentication
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bg-authentication
+    spec:
+      containers:
+        - name: nginx
+          image: 1gabriel/bg-authentication:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: mongodb.uri
+              valueFrom:
+                secretKeyRef:
+                  key: mongodb.uri
+                  name: bg-secret
+            - name: jwt.secret
+              valueFrom:
+                secretKeyRef:
+                  key: jwt.secret
+                  name: bg-secret
