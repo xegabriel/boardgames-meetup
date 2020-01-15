@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bg-client-deployment
+  namespace: bg-dev
+spec:
+  selector:
+    matchLabels:
+      app: bg-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bg-client
+    spec:
+      containers:
+        - name: nginx
+          image: 1gabriel/bg-client:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

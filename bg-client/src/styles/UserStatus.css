@@ -1,0 +1,25 @@
+.user-status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.5rem 3rem 0.5rem 0.5rem;
+    color: #ffffff;
+}
+
+.logout {
+    margin: 0;
+    display: block;
+    text-align: end;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.logout:hover {
+    cursor: pointer;
+    color: #3b5998;
+}
+
+.user-status p {
+    font-size: 0.9rem;
+    margin: 0;
+}
