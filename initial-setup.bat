@@ -1,4 +1,5 @@
 @echo off
+kubectl config use-context minikube
 kubectl config set-context --current --namespace=bg-dev
 kubectl apply -f bg-authentication\k8s-deployment
 kubectl apply -f bg-client\k8s-deployment
