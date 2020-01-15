@@ -5,13 +5,5 @@
     width: 100%;
     height: 100%;
     margin-top: 2rem;
-}
-
-.event-card {
-    width: 18rem;
-    margin: 1rem;
-}
-
-.access-event:hover {
-    cursor: pointer;
+    margin-bottom: 2rem;
 }

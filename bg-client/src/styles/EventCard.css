@@ -1,0 +1,9 @@
+.event-card {
+    width: 18rem;
+    margin: 1rem;
+    display: inline-block !important;
+}
+
+.access-event:hover {
+    cursor: pointer;
+}
