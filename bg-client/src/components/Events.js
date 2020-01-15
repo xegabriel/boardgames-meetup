@@ -31,7 +31,7 @@ class Events extends React.Component {
         const eventsList = this.state.events.map((event) =>
             <EventCard key={event.id.counter} event={event} />
         );
-        return (<div className="events-body">{eventsList}</div>);
+        return (<div className="events-body row">{eventsList}</div>);
     }
 }
 
