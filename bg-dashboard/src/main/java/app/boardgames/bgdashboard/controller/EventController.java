@@ -18,8 +18,8 @@ public class EventController {
         return ResponseEntity.ok(eventService.saveEvent(event));
     }
 
-    @RequestMapping(value = "/stopEventRegistration/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> stopEventRegistration(@PathVariable("id") ObjectId eventId) {
+    @RequestMapping(value = "/stopEventRegistration", method = RequestMethod.PUT)
+    public ResponseEntity<?> stopEventRegistration(@RequestBody ObjectId eventId) {
         return ResponseEntity.ok(eventService.stopEventRegistration(eventId));
     }
 
