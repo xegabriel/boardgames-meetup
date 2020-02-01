@@ -19,6 +19,10 @@ public class InterestedUser {
         return hasConfirmed;
     }
 
+    public void confirmAttendance() {
+        hasConfirmed = true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

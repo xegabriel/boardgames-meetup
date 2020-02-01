@@ -119,4 +119,13 @@ public class Event {
         }
         proposedGames.add(proposedGame);
     }
+
+    public void confirmAttendance(User user) {
+        for(InterestedUser interestedUser : interestedPlayers) {
+            if(interestedUser.getUser().equals(user)) {
+                interestedUser.confirmAttendance();
+                break;
+            }
+        }
+    }
 }

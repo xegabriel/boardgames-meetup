@@ -81,4 +81,19 @@ public class EventService {
         event.pushOrRemoveInterestedPlayer(new InterestedUser(user));
         return eventRepository.save(event);
     }
+
+    public Event confirmAttendance(String email, String eventTitle) {
+        User user = userRepository.findByEmail(email);
+        Event event = eventRepository.findByTitle(eventTitle);
+        if(user == null) {
+            throw new UserNotFoundException("The user with email " + email + " does not exist!");
+        } else if (event == null) {
+            throw new EventNotFoundException("The event " + eventTitle + " could not be found!");
+        } else if (event.isEventStillAvailableForRegistration()) {
+            throw new EventIsDisabledException("You can't confirm your attendance yet!");
+        }
+
+        event.confirmAttendance(user);
+        return eventRepository.save(event);
+    }
 }

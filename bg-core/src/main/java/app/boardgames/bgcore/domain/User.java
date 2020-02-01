@@ -19,6 +19,8 @@ public class User {
 
     private String lastName;
 
+    private int numberOfAttendedGames = 0;
+
     public ObjectId getId() {
         return id;
     }
@@ -33,6 +35,14 @@ public class User {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public int getNumberOfAttendedGames() {
+        return numberOfAttendedGames;
+    }
+
+    private void incrementNumberOfAttendedGames() {
+        numberOfAttendedGames++;
     }
 
     @Override

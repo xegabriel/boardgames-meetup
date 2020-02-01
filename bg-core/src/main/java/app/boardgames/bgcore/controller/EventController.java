@@ -35,4 +35,9 @@ public class EventController {
     public ResponseEntity<?> becomeInterested(HttpServletRequest request, @PathVariable String eventTitle) {
         return ResponseEntity.ok(eventService.becomeInterested(request.getHeader("email"), eventTitle));
     }
+
+    @RequestMapping(value = "/confirmAttendance/{eventTitle}", method = RequestMethod.PUT)
+    public ResponseEntity<?> confirmAttendance(HttpServletRequest request, @PathVariable String eventTitle) {
+        return ResponseEntity.ok(eventService.confirmAttendance(request.getHeader("email"), eventTitle));
+    }
 }
