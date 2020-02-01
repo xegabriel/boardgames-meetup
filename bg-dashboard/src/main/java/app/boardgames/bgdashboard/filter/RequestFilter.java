@@ -1,11 +1,16 @@
 package app.boardgames.bgdashboard.filter;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class RequestFilter implements Filter {
+    private final Log logger = LogFactory.getLog(this.getClass());
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -15,7 +20,8 @@ public class RequestFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        filterChain.doFilter(servletRequest,servletResponse);
+        logger.info("A " + request.getMethod() + " request was made at " + request.getRequestURL().toString() + ".");
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

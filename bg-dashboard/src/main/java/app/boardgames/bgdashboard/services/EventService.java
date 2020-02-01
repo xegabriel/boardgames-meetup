@@ -7,6 +7,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EventService {
     @Autowired
@@ -21,8 +23,8 @@ public class EventService {
         return eventRepository.save(event);
     }
 
-    public Event stopEventRegistration(ObjectId eventId) {
-        Event event = eventRepository.findById(eventId);
+    public Event stopEventRegistration(String eventTitle) {
+        Event event = eventRepository.findByTitle(eventTitle);
         if(event != null) {
             event.stopRegistration();
             eventRepository.save(event);
