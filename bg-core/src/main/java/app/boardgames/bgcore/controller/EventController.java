@@ -21,7 +21,7 @@ public class EventController {
         return ResponseEntity.ok(eventService.getAllEvents());
     }
 
-    @RequestMapping(value = "/voteEvent/{eventTitle}/{gameName}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/voteGameEvent/{eventTitle}/{gameName}", method = RequestMethod.PUT)
     public ResponseEntity<?> voteEvent(HttpServletRequest request, @PathVariable String eventTitle, @PathVariable String gameName) {
         return ResponseEntity.ok(eventService.voteEvent(request.getHeader("email"), eventTitle, gameName));
     }
