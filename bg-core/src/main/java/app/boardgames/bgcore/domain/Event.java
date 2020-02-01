@@ -126,4 +126,13 @@ public class Event {
             }
         }
     }
+
+    public void pushBadge(User votedUser, BadgeByVoter badgeByVoter) {
+        for (InterestedUser interestedUser : interestedPlayers) {
+            if (interestedUser.getUser().equals(votedUser)) {
+                interestedUser.pushBadge(badgeByVoter);
+                break;
+            }
+        }
+    }
 }

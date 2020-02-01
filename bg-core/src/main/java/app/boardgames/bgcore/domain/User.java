@@ -1,6 +1,10 @@
 package app.boardgames.bgcore.domain;
 
+import app.boardgames.bgcore.util.Badge;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "users")
 public class User extends CompactUser {
@@ -10,6 +14,8 @@ public class User extends CompactUser {
     private String role;
 
     private int numberOfAttendedGames = 0;
+
+    private List<Badge> badges;
 
     public String getPassword() {
         return password;
@@ -31,7 +37,19 @@ public class User extends CompactUser {
         return numberOfAttendedGames;
     }
 
+    public List<Badge> getBadges() {
+        return badges;
+    }
+
+    public void pushBadge(Badge badge) {
+        if (badges == null) {
+            badges = new ArrayList<>();
+        }
+        badges.add(badge);
+    }
+
     public void incrementAttendancesNumber() {
         numberOfAttendedGames++;
     }
+
 }

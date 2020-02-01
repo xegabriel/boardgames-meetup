@@ -1,5 +1,5 @@
 package app.boardgames.bgcore.util;
 
-interface Badge {
+public interface Badge {
     abstract String getBadgeName();
 }

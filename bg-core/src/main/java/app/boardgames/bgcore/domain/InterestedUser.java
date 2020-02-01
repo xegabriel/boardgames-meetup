@@ -1,10 +1,13 @@
 package app.boardgames.bgcore.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class InterestedUser {
     private CompactUser user;
     private boolean hasConfirmed;
+    private Set<BadgeByVoter> badges;
 
     public InterestedUser(CompactUser user) {
         this.user = user;
@@ -19,8 +22,19 @@ public class InterestedUser {
         return hasConfirmed;
     }
 
+    public Set<BadgeByVoter> getBadges() {
+        return badges;
+    }
+
     public void confirmAttendance() {
         hasConfirmed = true;
+    }
+
+    public void pushBadge(BadgeByVoter badgeByVoter) {
+        if (badges == null) {
+            badges = new HashSet<>();
+        }
+        badges.add(badgeByVoter);
     }
 
     @Override
