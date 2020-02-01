@@ -23,7 +23,7 @@ public class EventController {
         return ResponseEntity.ok(eventService.stopEventRegistration(eventId));
     }
 
-    @RequestMapping(value = "/saveEvent", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
     public ResponseEntity<?> updateEvent(@RequestBody Event event) {
         return ResponseEntity.ok(eventService.updateEvent(event));
     }
