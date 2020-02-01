@@ -65,12 +65,23 @@ public class EventService {
         } else if (!event.isEventStillAvailableForRegistration()) {
             throw new EventIsDisabledException("The event is not available for proposing games !");
         }
-        Set<ProposedGame> proposedGames = event.getProposedGames();
-        if(proposedGames == null) {
-            proposedGames = new HashSet<>();
+
+        event.pushSuggestedGame(new ProposedGame(gameName, user));
+        return eventRepository.save(event);
+    }
+
+    public Event becomeInterested(String email, String eventTitle) {
+        User user = userRepository.findByEmail(email);
+        Event event = eventRepository.findByTitle(eventTitle);
+        if(user == null) {
+            throw new UserNotFoundException("The user with email " + email + " does not exist!");
+        } else if (event == null) {
+            throw new EventNotFoundException("The event " + eventTitle + " could not be found!");
+        } else if (!event.isEventStillAvailableForRegistration()) {
+            throw new EventIsDisabledException("The event is not available for attending !");
         }
-        proposedGames.add(new ProposedGame(gameName, user));
-        event.setProposedGames(proposedGames);
+
+        event.pushOrRemoveInterestedPlayer(user);
         return eventRepository.save(event);
     }
 }

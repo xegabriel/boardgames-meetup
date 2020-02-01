@@ -30,4 +30,9 @@ public class EventController {
     public ResponseEntity<?> suggestGame(HttpServletRequest request, @PathVariable String eventTitle, @PathVariable String gameName) {
         return ResponseEntity.ok(eventService.suggestGame(request.getHeader("email"), eventTitle, gameName));
     }
+
+    @RequestMapping(value = "/becomeInterested/{eventTitle}", method = RequestMethod.PUT)
+    public ResponseEntity<?> becomeInterested(HttpServletRequest request, @PathVariable String eventTitle) {
+        return ResponseEntity.ok(eventService.becomeInterested(request.getHeader("email"), eventTitle));
+    }
 }

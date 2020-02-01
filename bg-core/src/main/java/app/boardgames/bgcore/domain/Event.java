@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Document(collection = "events")
@@ -100,5 +101,22 @@ public class Event {
 
     public void setProposedGames(Set<ProposedGame> proposedGames) {
         this.proposedGames = proposedGames;
+    }
+
+    public void pushOrRemoveInterestedPlayer(User user) {
+        if(interestedPlayers == null) {
+            interestedPlayers = new HashSet<>();
+        } else if (interestedPlayers.contains(user)) {
+            interestedPlayers.remove(user);
+        } else {
+            interestedPlayers.add(user);
+        }
+    }
+
+    public void pushSuggestedGame(ProposedGame proposedGame) {
+        if(proposedGames == null) {
+            proposedGames = new HashSet<>();
+        }
+        proposedGames.add(proposedGame);
     }
 }
