@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
-public abstract class User {
+public class User {
     @Id
     private ObjectId id;
 

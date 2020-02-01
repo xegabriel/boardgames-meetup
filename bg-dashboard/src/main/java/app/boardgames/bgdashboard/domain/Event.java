@@ -34,7 +34,7 @@ public class Event {
 
     private Set<String> proposedGames;
 
-    private Set<InterestedUser> interestedPlayers;
+    private Set<User> interestedPlayers;
 
     public ObjectId getId() {
         return id;
@@ -80,7 +80,7 @@ public class Event {
         return proposedGames;
     }
 
-    public Set<InterestedUser> getInterestedPlayers() {
+    public Set<User> getInterestedPlayers() {
         return interestedPlayers;
     }
 
