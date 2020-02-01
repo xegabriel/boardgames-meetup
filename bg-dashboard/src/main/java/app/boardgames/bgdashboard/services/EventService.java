@@ -3,11 +3,8 @@ package app.boardgames.bgdashboard.services;
 import app.boardgames.bgdashboard.dao.EventRepository;
 import app.boardgames.bgdashboard.domain.Event;
 import app.boardgames.bgdashboard.exceptions.EventNotFoundException;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class EventService {
@@ -25,7 +22,7 @@ public class EventService {
 
     public Event stopEventRegistration(String eventTitle) {
         Event event = eventRepository.findByTitle(eventTitle);
-        if(event != null) {
+        if (event != null) {
             event.stopRegistration();
             eventRepository.save(event);
         } else {

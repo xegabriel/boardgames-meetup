@@ -31,6 +31,7 @@ public class ZuulPreFilter extends ZuulFilter {
         return !ctx.containsKey(FORWARD_TO_KEY) // a filter has already forwarded
                 && !ctx.containsKey(SERVICE_ID_KEY); // a filter has already determined serviceId
     }
+
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();

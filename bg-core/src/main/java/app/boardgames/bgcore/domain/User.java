@@ -2,8 +2,6 @@ package app.boardgames.bgcore.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Objects;
-
 @Document(collection = "users")
 public class User extends CompactUser {
 
@@ -25,12 +23,12 @@ public class User extends CompactUser {
         return role;
     }
 
-    public int getNumberOfAttendedGames() {
-        return numberOfAttendedGames;
-    }
-
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getNumberOfAttendedGames() {
+        return numberOfAttendedGames;
     }
 
     public void incrementAttendancesNumber() {

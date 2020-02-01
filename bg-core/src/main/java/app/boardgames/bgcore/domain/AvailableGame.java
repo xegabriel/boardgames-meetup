@@ -16,7 +16,7 @@ public class AvailableGame {
     }
 
     public void pushOrRemoveVote(CompactUser votingUser) {
-        if(votesFromUsers == null || votesFromUsers.isEmpty()) {
+        if (votesFromUsers == null || votesFromUsers.isEmpty()) {
             votesFromUsers = new HashSet<>();
             votesFromUsers.add(votingUser);
         } else if (!votesFromUsers.contains(votingUser)) {

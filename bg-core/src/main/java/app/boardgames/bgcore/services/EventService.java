@@ -1,7 +1,7 @@
 package app.boardgames.bgcore.services;
 
-import app.boardgames.bgcore.dao.EventRepository;
 import app.boardgames.bgcore.dao.CompactUserRepository;
+import app.boardgames.bgcore.dao.EventRepository;
 import app.boardgames.bgcore.dao.UserRepository;
 import app.boardgames.bgcore.domain.*;
 import app.boardgames.bgcore.exceptions.EventIsDisabledException;
@@ -36,19 +36,19 @@ public class EventService {
     public Event voteEvent(String email, String eventTitle, String gameName) {
         CompactUser user = compactUserRepository.findByEmail(email);
         Event event = eventRepository.findByTitle(eventTitle);
-        if(user == null) {
+        if (user == null) {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
         } else if (event == null) {
             throw new EventNotFoundException("The event " + eventTitle + " could not be found!");
-        } else if(!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(gameName)) {
+        } else if (!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(gameName)) {
             throw new GameNotFoundException("Game " + gameName + " not found!");
         } else if (!event.isEventStillAvailableForRegistration()) {
             throw new EventIsDisabledException("The event is not available for voting !");
         }
 
         Optional<AvailableGame> availableGameOptional = event.getAvailableGames().stream().filter(ag -> ag.getGameName().equalsIgnoreCase(gameName)).findFirst();
-        if(availableGameOptional.isPresent()) {
-            AvailableGame availableGameVotes =availableGameOptional.get();
+        if (availableGameOptional.isPresent()) {
+            AvailableGame availableGameVotes = availableGameOptional.get();
             event.getAvailableGames().remove(availableGameVotes);
             availableGameVotes.pushOrRemoveVote(user);
             event.getAvailableGames().add(availableGameVotes);
@@ -60,7 +60,7 @@ public class EventService {
     public Event suggestGame(String email, String eventTitle, String gameName) {
         CompactUser user = compactUserRepository.findByEmail(email);
         Event event = eventRepository.findByTitle(eventTitle);
-        if(user == null) {
+        if (user == null) {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
         } else if (event == null) {
             throw new EventNotFoundException("The event " + eventTitle + " could not be found!");
@@ -75,7 +75,7 @@ public class EventService {
     public Event becomeInterested(String email, String eventTitle) {
         CompactUser user = compactUserRepository.findByEmail(email);
         Event event = eventRepository.findByTitle(eventTitle);
-        if(user == null) {
+        if (user == null) {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
         } else if (event == null) {
             throw new EventNotFoundException("The event " + eventTitle + " could not be found!");
@@ -90,7 +90,7 @@ public class EventService {
     public Event confirmAttendance(String email, String eventTitle) {
         User user = userRepository.findByEmail(email);
         Event event = eventRepository.findByTitle(eventTitle);
-        if(user == null) {
+        if (user == null) {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
         } else if (event == null) {
             throw new EventNotFoundException("The event " + eventTitle + " could not be found!");

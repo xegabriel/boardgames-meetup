@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public ZuulPreFilter zuulPreFilter(){
+    public ZuulPreFilter zuulPreFilter() {
         return new ZuulPreFilter();
     }
 }

@@ -9,7 +9,7 @@ public class BadgeFactory {
             return new HelperBadge();
         } else if (badgeName.equalsIgnoreCase(BadgeNames.KNOWS_THE_RULES.toString())) {
             return new KnowsTheRulesBadge();
-        } else if(badgeName.equalsIgnoreCase(BadgeNames.VOTED_MVP.toString())) {
+        } else if (badgeName.equalsIgnoreCase(BadgeNames.VOTED_MVP.toString())) {
             return new VotedMVPBadge();
         } else {
             throw new InvalidBadgeException("Badge " + badgeName + " is invalid!");

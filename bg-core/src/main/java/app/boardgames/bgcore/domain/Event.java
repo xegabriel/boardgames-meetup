@@ -3,12 +3,10 @@ package app.boardgames.bgcore.domain;
 import app.boardgames.bgcore.exceptions.EventAlreadyConfirmedException;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-
-import org.springframework.data.mongodb.core.index.Indexed;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -84,6 +82,10 @@ public class Event {
         return proposedGames;
     }
 
+    public void setProposedGames(Set<ProposedGame> proposedGames) {
+        this.proposedGames = proposedGames;
+    }
+
     public Set<InterestedUser> getInterestedPlayers() {
         return interestedPlayers;
     }
@@ -96,12 +98,8 @@ public class Event {
         isEventStillAvailableForRegistration = true;
     }
 
-    public void setProposedGames(Set<ProposedGame> proposedGames) {
-        this.proposedGames = proposedGames;
-    }
-
     public void pushOrRemoveInterestedPlayer(InterestedUser user) {
-        if(interestedPlayers == null) {
+        if (interestedPlayers == null) {
             interestedPlayers = new HashSet<>();
         } else if (interestedPlayers.contains(user)) {
             interestedPlayers.remove(user);
@@ -111,16 +109,16 @@ public class Event {
     }
 
     public void pushSuggestedGame(ProposedGame proposedGame) {
-        if(proposedGames == null) {
+        if (proposedGames == null) {
             proposedGames = new HashSet<>();
         }
         proposedGames.add(proposedGame);
     }
 
     public void confirmAttendance(CompactUser user) {
-        for(InterestedUser interestedUser : interestedPlayers) {
-            if(interestedUser.getUser().equals(user)) {
-                if(interestedUser.isHasConfirmed()) {
+        for (InterestedUser interestedUser : interestedPlayers) {
+            if (interestedUser.getUser().equals(user)) {
+                if (interestedUser.isHasConfirmed()) {
                     throw new EventAlreadyConfirmedException("The event is already confirmed!");
                 }
                 interestedUser.confirmAttendance();

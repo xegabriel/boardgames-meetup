@@ -1,6 +1,5 @@
 package app.boardgames.bgauthentication.filter;
 
-import app.boardgames.bgauthentication.domain.CustomClaims;
 import app.boardgames.bgauthentication.services.JwtUserDetailsService;
 import app.boardgames.bgauthentication.util.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;

@@ -67,11 +67,11 @@ public class User {
         return role;
     }
 
-    public int getNumberOfAttendedGames() {
-        return numberOfAttendedGames;
-    }
-
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getNumberOfAttendedGames() {
+        return numberOfAttendedGames;
     }
 }

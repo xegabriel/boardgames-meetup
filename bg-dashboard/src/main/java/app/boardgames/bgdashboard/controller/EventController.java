@@ -2,7 +2,6 @@ package app.boardgames.bgdashboard.controller;
 
 import app.boardgames.bgdashboard.domain.Event;
 import app.boardgames.bgdashboard.services.EventService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
