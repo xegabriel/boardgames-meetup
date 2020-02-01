@@ -26,6 +26,9 @@ public class EventService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
@@ -91,13 +94,12 @@ public class EventService {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
         } else if (event == null) {
             throw new EventNotFoundException("The event " + eventTitle + " could not be found!");
-        } else if (!event.isEventStillAvailableForRegistration()) {
+        } else if (event.isEventStillAvailableForRegistration()) {
             throw new EventIsDisabledException("You can't confirm your attendance yet!");
         }
 
         event.confirmAttendance(user);
-        user.incrementAttendancesNumber();
-        compactUserRepository.save(user);
+        userService.incrementNumberOfAttendances(user);
         return eventRepository.save(event);
     }
 }
