@@ -97,4 +97,8 @@ public class Event {
     public void startRegistration() {
         isEventStillAvailableForRegistration = true;
     }
+
+    public void setProposedGames(Set<ProposedGame> proposedGames) {
+        this.proposedGames = proposedGames;
+    }
 }

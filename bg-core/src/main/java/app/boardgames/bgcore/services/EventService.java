@@ -4,6 +4,7 @@ import app.boardgames.bgcore.dao.EventRepository;
 import app.boardgames.bgcore.dao.UserRepository;
 import app.boardgames.bgcore.domain.AvailableGame;
 import app.boardgames.bgcore.domain.Event;
+import app.boardgames.bgcore.domain.ProposedGame;
 import app.boardgames.bgcore.domain.User;
 import app.boardgames.bgcore.exceptions.EventIsDisabledException;
 import app.boardgames.bgcore.exceptions.EventNotFoundException;
@@ -12,8 +13,10 @@ import app.boardgames.bgcore.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,6 +52,25 @@ public class EventService {
             event.getAvailableGames().add(availableGameVotes);
         }
 
+        return eventRepository.save(event);
+    }
+
+    public Event suggestGame(String email, String eventTitle, String gameName) {
+        User user = userRepository.findByEmail(email);
+        Event event = eventRepository.findByTitle(eventTitle);
+        if(user == null) {
+            throw new UserNotFoundException("The user with email " + email + " does not exist!");
+        } else if (event == null) {
+            throw new EventNotFoundException("The event " + eventTitle + " could not be found!");
+        } else if (!event.isEventStillAvailableForRegistration()) {
+            throw new EventIsDisabledException("The event is not available for proposing games !");
+        }
+        Set<ProposedGame> proposedGames = event.getProposedGames();
+        if(proposedGames == null) {
+            proposedGames = new HashSet<>();
+        }
+        proposedGames.add(new ProposedGame(gameName, user));
+        event.setProposedGames(proposedGames);
         return eventRepository.save(event);
     }
 }
