@@ -1,4 +1,4 @@
-package app.boardgames.bgauthentication.util;
+package app.boardgames.bgauthentication.domain;
 
 public enum CustomClaims {
     EMAIL("email"), ROLE("role"), FIRST_NAME("firstName"), LAST_NAME("lastName");

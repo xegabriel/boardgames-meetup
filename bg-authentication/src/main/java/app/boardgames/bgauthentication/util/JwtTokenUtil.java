@@ -1,5 +1,6 @@
 package app.boardgames.bgauthentication.util;
 
+import app.boardgames.bgauthentication.domain.CustomClaims;
 import app.boardgames.bgauthentication.domain.User;
 import app.boardgames.bgauthentication.services.UserService;
 import io.jsonwebtoken.Claims;

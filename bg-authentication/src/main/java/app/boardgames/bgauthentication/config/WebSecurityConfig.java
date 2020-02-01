@@ -1,6 +1,8 @@
 package app.boardgames.bgauthentication.config;
 
 import app.boardgames.bgauthentication.domain.UserRoles;
+import app.boardgames.bgauthentication.filter.JwtRequestFilter;
+import app.boardgames.bgauthentication.filter.ZuulPreFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -74,5 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    public ZuulPreFilter zuulPreFilter(){
+        return new ZuulPreFilter();
     }
 }
