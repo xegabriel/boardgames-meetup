@@ -41,7 +41,7 @@ public class Event {
 
     private Set<ProposedGame> proposedGames;
 
-    private Set<User> interestedPlayers;
+    private Set<InterestedUser> interestedPlayers;
 
     public ObjectId getId() {
         return id;
@@ -87,7 +87,7 @@ public class Event {
         return proposedGames;
     }
 
-    public Set<User> getInterestedPlayers() {
+    public Set<InterestedUser> getInterestedPlayers() {
         return interestedPlayers;
     }
 
@@ -103,7 +103,7 @@ public class Event {
         this.proposedGames = proposedGames;
     }
 
-    public void pushOrRemoveInterestedPlayer(User user) {
+    public void pushOrRemoveInterestedPlayer(InterestedUser user) {
         if(interestedPlayers == null) {
             interestedPlayers = new HashSet<>();
         } else if (interestedPlayers.contains(user)) {

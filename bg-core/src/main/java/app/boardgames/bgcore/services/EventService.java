@@ -2,10 +2,7 @@ package app.boardgames.bgcore.services;
 
 import app.boardgames.bgcore.dao.EventRepository;
 import app.boardgames.bgcore.dao.UserRepository;
-import app.boardgames.bgcore.domain.AvailableGame;
-import app.boardgames.bgcore.domain.Event;
-import app.boardgames.bgcore.domain.ProposedGame;
-import app.boardgames.bgcore.domain.User;
+import app.boardgames.bgcore.domain.*;
 import app.boardgames.bgcore.exceptions.EventIsDisabledException;
 import app.boardgames.bgcore.exceptions.EventNotFoundException;
 import app.boardgames.bgcore.exceptions.GameNotFoundException;
@@ -81,7 +78,7 @@ public class EventService {
             throw new EventIsDisabledException("The event is not available for attending !");
         }
 
-        event.pushOrRemoveInterestedPlayer(user);
+        event.pushOrRemoveInterestedPlayer(new InterestedUser(user));
         return eventRepository.save(event);
     }
 }
