@@ -3,15 +3,15 @@ package app.boardgames.bgcore.domain;
 import java.util.Objects;
 
 public class InterestedUser {
-    private User user;
+    private CompactUser user;
     private boolean hasConfirmed;
 
-    public InterestedUser(User user) {
+    public InterestedUser(CompactUser user) {
         this.user = user;
         this.hasConfirmed = false;
     }
 
-    public User getUser() {
+    public CompactUser getUser() {
         return user;
     }
 

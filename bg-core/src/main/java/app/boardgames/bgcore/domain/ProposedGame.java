@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class ProposedGame {
     private String gameName;
-    private User user;
+    private CompactUser user;
 
-    public ProposedGame(String gameName, User user) {
+    public ProposedGame(String gameName, CompactUser user) {
         this.gameName = gameName;
         this.user = user;
     }
@@ -15,7 +15,7 @@ public class ProposedGame {
         return gameName;
     }
 
-    public User getUser() {
+    public CompactUser getUser() {
         return user;
     }
 

@@ -1,6 +1,7 @@
 package app.boardgames.bgcore.services;
 
 import app.boardgames.bgcore.dao.EventRepository;
+import app.boardgames.bgcore.dao.CompactUserRepository;
 import app.boardgames.bgcore.dao.UserRepository;
 import app.boardgames.bgcore.domain.*;
 import app.boardgames.bgcore.exceptions.EventIsDisabledException;
@@ -10,16 +11,17 @@ import app.boardgames.bgcore.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class EventService {
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private CompactUserRepository compactUserRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -29,7 +31,7 @@ public class EventService {
     }
 
     public Event voteEvent(String email, String eventTitle, String gameName) {
-        User user = userRepository.findByEmail(email);
+        CompactUser user = compactUserRepository.findByEmail(email);
         Event event = eventRepository.findByTitle(eventTitle);
         if(user == null) {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
@@ -53,7 +55,7 @@ public class EventService {
     }
 
     public Event suggestGame(String email, String eventTitle, String gameName) {
-        User user = userRepository.findByEmail(email);
+        CompactUser user = compactUserRepository.findByEmail(email);
         Event event = eventRepository.findByTitle(eventTitle);
         if(user == null) {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
@@ -68,7 +70,7 @@ public class EventService {
     }
 
     public Event becomeInterested(String email, String eventTitle) {
-        User user = userRepository.findByEmail(email);
+        CompactUser user = compactUserRepository.findByEmail(email);
         Event event = eventRepository.findByTitle(eventTitle);
         if(user == null) {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
@@ -89,11 +91,13 @@ public class EventService {
             throw new UserNotFoundException("The user with email " + email + " does not exist!");
         } else if (event == null) {
             throw new EventNotFoundException("The event " + eventTitle + " could not be found!");
-        } else if (event.isEventStillAvailableForRegistration()) {
+        } else if (!event.isEventStillAvailableForRegistration()) {
             throw new EventIsDisabledException("You can't confirm your attendance yet!");
         }
 
         event.confirmAttendance(user);
+        user.incrementAttendancesNumber();
+        compactUserRepository.save(user);
         return eventRepository.save(event);
     }
 }

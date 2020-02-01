@@ -1,17 +1,14 @@
 package app.boardgames.bgcore.domain;
 
+import app.boardgames.bgcore.exceptions.EventAlreadyConfirmedException;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -120,9 +117,12 @@ public class Event {
         proposedGames.add(proposedGame);
     }
 
-    public void confirmAttendance(User user) {
+    public void confirmAttendance(CompactUser user) {
         for(InterestedUser interestedUser : interestedPlayers) {
             if(interestedUser.getUser().equals(user)) {
+                if(interestedUser.isHasConfirmed()) {
+                    throw new EventAlreadyConfirmedException("The event is already confirmed!");
+                }
                 interestedUser.confirmAttendance();
                 break;
             }

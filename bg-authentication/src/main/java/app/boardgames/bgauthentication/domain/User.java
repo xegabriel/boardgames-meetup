@@ -21,6 +21,8 @@ public class User {
 
     private String role;
 
+    private int numberOfAttendedGames = 0;
+
     public ObjectId getId() {
         return id;
     }
@@ -63,6 +65,10 @@ public class User {
 
     public String getRole() {
         return role;
+    }
+
+    public int getNumberOfAttendedGames() {
+        return numberOfAttendedGames;
     }
 
     public void setRole(String role) {

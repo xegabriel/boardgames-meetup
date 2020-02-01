@@ -5,17 +5,17 @@ import java.util.Set;
 
 public class AvailableGame {
     private String gameName;
-    private Set<User> votesFromUsers;
+    private Set<CompactUser> votesFromUsers;
 
     public String getGameName() {
         return gameName;
     }
 
-    public Set<User> getVotesFromUsers() {
+    public Set<CompactUser> getVotesFromUsers() {
         return votesFromUsers;
     }
 
-    public void pushOrRemoveVote(User votingUser) {
+    public void pushOrRemoveVote(CompactUser votingUser) {
         if(votesFromUsers == null || votesFromUsers.isEmpty()) {
             votesFromUsers = new HashSet<>();
             votesFromUsers.add(votingUser);
