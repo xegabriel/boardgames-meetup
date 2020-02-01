@@ -1,5 +1,6 @@
 package app.boardgames.bgauthentication.config;
 
+import app.boardgames.bgauthentication.domain.UserRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,8 +55,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors()
                 .and().csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate", "/register").permitAll().
-                anyRequest().authenticated().and().
+                .authorizeRequests()
+                .antMatchers("/authenticate", "/register").permitAll()
+                .antMatchers("/api/dashboard/**").hasRole(UserRoles.ORGANIZER.toString())
+                .anyRequest().authenticated().and().
                 exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
