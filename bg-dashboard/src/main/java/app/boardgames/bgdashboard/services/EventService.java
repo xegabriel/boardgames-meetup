@@ -33,9 +33,9 @@ public class EventService {
         if (event == null) {
             throw new EventNotFoundException("Could not stop the registration, as the event does not exists!");
 
-        }/* else if(!event.isEventStillAvailableForRegistration()){ // TODO: Decomment
+        } else if(!event.isEventStillAvailableForRegistration()){
             throw new IllegalOperationException("The event is already closed!");
-        } */else if(!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(finalGame)){
+        } else if(!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(finalGame)){
             throw new IllegalOperationException("The game is not available for this event!");
         }
         checkIfUserIsAllowed(event, email);
