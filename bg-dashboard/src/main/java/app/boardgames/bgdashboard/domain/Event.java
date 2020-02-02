@@ -36,7 +36,7 @@ public class Event {
 
     private Set<ProposedGame> proposedGames;
 
-    private Set<CompactUser> interestedPlayers;
+    private Set<InterestedUser> interestedPlayers;
 
     private String finalGame;
 
@@ -92,7 +92,7 @@ public class Event {
         return proposedGames;
     }
 
-    public Set<CompactUser> getInterestedPlayers() {
+    public Set<InterestedUser> getInterestedPlayers() {
         return interestedPlayers;
     }
 

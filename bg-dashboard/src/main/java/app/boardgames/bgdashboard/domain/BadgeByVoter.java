@@ -1,6 +1,6 @@
-package app.boardgames.bgcore.domain;
+package app.boardgames.bgdashboard.domain;
 
-import app.boardgames.bgcore.domain.badges.Badge;
+import app.boardgames.bgdashboard.domain.badges.Badge;
 
 public class BadgeByVoter {
     private Badge badge;

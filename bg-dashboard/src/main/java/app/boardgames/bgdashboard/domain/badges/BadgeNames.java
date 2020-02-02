@@ -1,4 +1,4 @@
-package app.boardgames.bgcore.domain;
+package app.boardgames.bgdashboard.domain.badges;
 
 public enum BadgeNames {
     HELPER("Helper"), KNOWS_THE_RULES("KnowsTheRules"), VOTED_MVP("Voted MVP");

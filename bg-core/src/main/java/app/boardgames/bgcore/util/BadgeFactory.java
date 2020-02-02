@@ -1,6 +1,10 @@
 package app.boardgames.bgcore.util;
 
-import app.boardgames.bgcore.domain.BadgeNames;
+import app.boardgames.bgcore.domain.badges.BadgeNames;
+import app.boardgames.bgcore.domain.badges.Badge;
+import app.boardgames.bgcore.domain.badges.HelperBadge;
+import app.boardgames.bgcore.domain.badges.KnowsTheRulesBadge;
+import app.boardgames.bgcore.domain.badges.VotedMVPBadge;
 import app.boardgames.bgcore.exceptions.InvalidBadgeException;
 
 public class BadgeFactory {

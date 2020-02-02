@@ -1,6 +1,4 @@
-package app.boardgames.bgcore.util;
-
-import app.boardgames.bgcore.domain.BadgeNames;
+package app.boardgames.bgcore.domain.badges;
 
 public class HelperBadge implements Badge {
 

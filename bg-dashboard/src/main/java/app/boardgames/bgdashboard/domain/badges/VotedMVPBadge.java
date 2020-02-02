@@ -1,6 +1,4 @@
-package app.boardgames.bgcore.util;
-
-import app.boardgames.bgcore.domain.BadgeNames;
+package app.boardgames.bgdashboard.domain.badges;
 
 public class VotedMVPBadge implements Badge {
 

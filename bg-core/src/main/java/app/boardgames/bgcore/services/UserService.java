@@ -7,7 +7,7 @@ import app.boardgames.bgcore.domain.*;
 import app.boardgames.bgcore.exceptions.EventNotFoundException;
 import app.boardgames.bgcore.exceptions.IllegalVotingException;
 import app.boardgames.bgcore.exceptions.UserNotFoundException;
-import app.boardgames.bgcore.util.Badge;
+import app.boardgames.bgcore.domain.badges.Badge;
 import app.boardgames.bgcore.util.BadgeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

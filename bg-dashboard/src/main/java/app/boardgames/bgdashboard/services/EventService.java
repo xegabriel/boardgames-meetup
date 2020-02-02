@@ -1,8 +1,8 @@
 package app.boardgames.bgdashboard.services;
 
 import app.boardgames.bgdashboard.dao.EventRepository;
-import app.boardgames.bgdashboard.domain.AvailableGame;
-import app.boardgames.bgdashboard.domain.Event;
+import app.boardgames.bgdashboard.dao.UserRepository;
+import app.boardgames.bgdashboard.domain.*;
 import app.boardgames.bgdashboard.exceptions.EventNotFoundException;
 import app.boardgames.bgdashboard.exceptions.IllegalOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 public class EventService {
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public Event saveEvent(String email, Event event) {
         event.startRegistration();
@@ -31,9 +33,9 @@ public class EventService {
         if (event == null) {
             throw new EventNotFoundException("Could not stop the registration, as the event does not exists!");
 
-        } else if(!event.isEventStillAvailableForRegistration()){
+        }/* else if(!event.isEventStillAvailableForRegistration()){ // TODO: Decomment
             throw new IllegalOperationException("The event is already closed!");
-        } else if(!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(finalGame)){
+        } */else if(!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(finalGame)){
             throw new IllegalOperationException("The game is not available for this event!");
         } else {
             checkIfUserIsAllowed(event, email);
@@ -41,12 +43,16 @@ public class EventService {
             event.setFinalGame(finalGame);
             eventRepository.save(event);
         }
-        //TODO: Implement players notifications
+        for(InterestedUser interestedUser : event.getInterestedPlayers()) {
+            User user = userRepository.findByEmail(interestedUser.getUser().getEmail());
+            user.pushDecidedEvent(eventTitle);
+            userRepository.save(user);
+        }
         return event;
     }
 
     private void checkIfUserIsAllowed(Event event, String email) {
-        if(event.getCreatedByEmail().equalsIgnoreCase(email)) {
+        if(event.getCreatedByEmail() != null && !event.getCreatedByEmail().equalsIgnoreCase(email)) {
             throw new IllegalOperationException("You are not allowed to edit this event!");
         }
     }
