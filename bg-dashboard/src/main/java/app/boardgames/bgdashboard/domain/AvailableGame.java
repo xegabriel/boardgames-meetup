@@ -4,13 +4,13 @@ import java.util.Set;
 
 public class AvailableGame {
     private String gameName;
-    private Set<User> votesFromUsers;
+    private Set<CompactUser> votesFromCompactUsers;
 
     public String getGameName() {
         return gameName;
     }
 
-    public Set<User> getVotesFromUsers() {
-        return votesFromUsers;
+    public Set<CompactUser> getVotesFromCompactUsers() {
+        return votesFromCompactUsers;
     }
 }

@@ -50,4 +50,5 @@ public class EventService {
             throw new IllegalOperationException("You are not allowed to edit this event!");
         }
     }
+
 }

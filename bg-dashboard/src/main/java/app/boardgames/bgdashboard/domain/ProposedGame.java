@@ -2,13 +2,13 @@ package app.boardgames.bgdashboard.domain;
 
 public class ProposedGame {
     private String gameName;
-    private User user;
+    private CompactUser compactUser;
 
     public String getGameName() {
         return gameName;
     }
 
-    public User getUser() {
-        return user;
+    public CompactUser getCompactUser() {
+        return compactUser;
     }
 }
