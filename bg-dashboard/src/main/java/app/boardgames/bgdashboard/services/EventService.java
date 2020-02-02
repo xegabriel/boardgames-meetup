@@ -37,17 +37,12 @@ public class EventService {
             throw new IllegalOperationException("The event is already closed!");
         } */else if(!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(finalGame)){
             throw new IllegalOperationException("The game is not available for this event!");
-        } else {
-            checkIfUserIsAllowed(event, email);
-            event.stopRegistration();
-            event.setFinalGame(finalGame);
-            eventRepository.save(event);
         }
-        for(InterestedUser interestedUser : event.getInterestedPlayers()) {
-            User user = userRepository.findByEmail(interestedUser.getUser().getEmail());
-            user.pushDecidedEvent(eventTitle);
-            userRepository.save(user);
-        }
+        checkIfUserIsAllowed(event, email);
+        event.stopRegistration();
+        event.setFinalGame(finalGame);
+        eventRepository.save(event);
+
         return event;
     }
 

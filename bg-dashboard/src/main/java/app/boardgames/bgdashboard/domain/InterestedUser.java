@@ -1,18 +1,16 @@
 package app.boardgames.bgdashboard.domain;
 
+import app.boardgames.bgdashboard.configuration.SpringConfiguration;
+import app.boardgames.bgdashboard.dao.UserRepository;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class InterestedUser {
+public class InterestedUser implements Interested{
     private CompactUser user;
     private boolean hasConfirmed;
     private Set<BadgeByVoter> badges;
-
-    public InterestedUser(CompactUser user) {
-        this.user = user;
-        this.hasConfirmed = false;
-    }
 
     public CompactUser getUser() {
         return user;
@@ -48,5 +46,13 @@ public class InterestedUser {
     @Override
     public int hashCode() {
         return Objects.hash(user);
+    }
+
+    @Override
+    public void update(String eventTitle) {
+        UserRepository userRepository = (UserRepository) SpringConfiguration.contextProvider().getApplicationContext().getBean("userRepository");
+        User user = userRepository.findByEmail(getUser().getEmail());
+        user.pushDecidedEvent(eventTitle);
+        userRepository.save(user);
     }
 }

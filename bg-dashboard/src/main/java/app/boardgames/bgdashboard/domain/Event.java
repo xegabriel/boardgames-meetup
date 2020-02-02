@@ -106,6 +106,9 @@ public class Event {
 
     public void stopRegistration() {
         isEventStillAvailableForRegistration = false;
+        for(InterestedUser interestedUser: interestedPlayers) {
+            interestedUser.update(title);
+        }
     }
 
     public void startRegistration() {
