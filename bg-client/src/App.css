@@ -41,3 +41,25 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.float-add-event {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgb(123, 212, 251);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #227bbf;
+}
+
+.plus-icon-float {
+    margin-top: 18px;
+}
+
+.float-add-event:hover {
+    color: #2ba2fb;
+    cursor: pointer;
+}
