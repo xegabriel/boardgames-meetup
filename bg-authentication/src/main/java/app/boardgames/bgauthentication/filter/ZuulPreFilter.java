@@ -36,7 +36,7 @@ public class ZuulPreFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        if (request.getRequestURI().startsWith("/api/core")) {
+        if (request.getRequestURI().startsWith("/api/")) {
             injectUserInfoIntoRequest(ctx);
         }
         return null;

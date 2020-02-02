@@ -1,34 +1,53 @@
 package app.boardgames.bgdashboard.services;
 
 import app.boardgames.bgdashboard.dao.EventRepository;
+import app.boardgames.bgdashboard.domain.AvailableGame;
 import app.boardgames.bgdashboard.domain.Event;
 import app.boardgames.bgdashboard.exceptions.EventNotFoundException;
+import app.boardgames.bgdashboard.exceptions.IllegalOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    public Event saveEvent(Event event) {
+    public Event saveEvent(String email, Event event) {
         event.startRegistration();
+        event.setCreatedByEmail(email);
         return eventRepository.save(event);
     }
 
-    public Event updateEvent(Event event) {
+    public Event updateEvent(String email, Event event) {
+        checkIfUserIsAllowed(event, email);
         return eventRepository.save(event);
     }
 
-    public Event stopEventRegistration(String eventTitle) {
+    public Event stopEventRegistration(String email, String eventTitle, String finalGame) {
         Event event = eventRepository.findByTitle(eventTitle);
-        if (event != null) {
-            event.stopRegistration();
-            eventRepository.save(event);
-        } else {
+        if (event == null) {
             throw new EventNotFoundException("Could not stop the registration, as the event does not exists!");
+
+        } else if(!event.isEventStillAvailableForRegistration()){
+            throw new IllegalOperationException("The event is already closed!");
+        } else if(!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(finalGame)){
+            throw new IllegalOperationException("The game is not available for this event!");
+        } else {
+            checkIfUserIsAllowed(event, email);
+            event.stopRegistration();
+            event.setFinalGame(finalGame);
+            eventRepository.save(event);
         }
         //TODO: Implement players notifications
         return event;
+    }
+
+    private void checkIfUserIsAllowed(Event event, String email) {
+        if(event.getCreatedByEmail().equalsIgnoreCase(email)) {
+            throw new IllegalOperationException("You are not allowed to edit this event!");
+        }
     }
 }

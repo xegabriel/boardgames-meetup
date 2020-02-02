@@ -30,11 +30,15 @@ public class Event {
 
     private boolean isEventStillAvailableForRegistration;
 
+    private String createdByEmail;
+
     private Set<AvailableGame> availableGames;
 
     private Set<ProposedGame> proposedGames;
 
     private Set<User> interestedPlayers;
+
+    private String finalGame;
 
     public ObjectId getId() {
         return id;
@@ -72,6 +76,14 @@ public class Event {
         return isEventStillAvailableForRegistration;
     }
 
+    public String getCreatedByEmail() {
+        return createdByEmail;
+    }
+
+    public void setCreatedByEmail(String createdByEmail) {
+        this.createdByEmail = createdByEmail;
+    }
+
     public Set<AvailableGame> getAvailableGames() {
         return availableGames;
     }
@@ -82,6 +94,14 @@ public class Event {
 
     public Set<User> getInterestedPlayers() {
         return interestedPlayers;
+    }
+
+    public String getFinalGame() {
+        return finalGame;
+    }
+
+    public void setFinalGame(String finalGame) {
+        this.finalGame = finalGame;
     }
 
     public void stopRegistration() {
