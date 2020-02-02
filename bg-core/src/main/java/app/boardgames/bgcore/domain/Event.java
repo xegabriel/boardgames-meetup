@@ -32,6 +32,10 @@ public class Event {
 
     private boolean isEventStillAvailableForRegistration;
 
+    private String createdByEmail;
+
+    private String finalGame;
+
     private Set<AvailableGame> availableGames;
 
     private Set<ProposedGame> proposedGames;
@@ -68,6 +72,14 @@ public class Event {
 
     public int getMaximumPlayers() {
         return maximumPlayers;
+    }
+
+    public String getCreatedByEmail() {
+        return createdByEmail;
+    }
+
+    public String getFinalGame() {
+        return finalGame;
     }
 
     public boolean isEventStillAvailableForRegistration() {

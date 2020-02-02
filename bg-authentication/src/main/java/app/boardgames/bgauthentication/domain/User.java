@@ -1,9 +1,12 @@
 package app.boardgames.bgauthentication.domain;
 
+import app.boardgames.bgauthentication.domain.badges.Badge;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @Document(collection = "users")
 public class User {
@@ -22,6 +25,8 @@ public class User {
     private String role;
 
     private int numberOfAttendedGames = 0;
+
+    private List<Badge> badges;
 
     public ObjectId getId() {
         return id;
@@ -73,5 +78,9 @@ public class User {
 
     public int getNumberOfAttendedGames() {
         return numberOfAttendedGames;
+    }
+
+    public List<Badge> getBadges() {
+        return badges;
     }
 }

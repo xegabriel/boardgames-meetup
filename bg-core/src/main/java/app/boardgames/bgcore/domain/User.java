@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Document(collection = "users")
 public class User extends CompactUser {
@@ -41,6 +42,8 @@ public class User extends CompactUser {
         return badges;
     }
 
+    private Set<String> decidedEvents;
+
     public void pushBadge(Badge badge) {
         if (badges == null) {
             badges = new ArrayList<>();
@@ -52,4 +55,7 @@ public class User extends CompactUser {
         numberOfAttendedGames++;
     }
 
+    public Set<String> getDecidedEvents() {
+        return decidedEvents;
+    }
 }
