@@ -27,9 +27,13 @@ class Events extends React.Component {
             });
     }
 
+    handleReadMore = (eventTitle) => {
+        this.props.handleReadMore(this.state.events.filter(e => e.title === eventTitle)[0]);
+    };
+
     render() {
         const eventsList = this.state.events.map((event) =>
-            <EventCard key={event.id.counter} event={event}/>
+            <EventCard handleReadMore={this.handleReadMore} key={event.id.counter} event={event}/>
         );
         return (<div className="events-body row">{eventsList}</div>);
     }

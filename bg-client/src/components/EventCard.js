@@ -4,6 +4,9 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import '../styles/EventCard.css';
 
 class EventCard extends React.Component {
+    handleReadMore = () => {
+        this.props.handleReadMore(this.props.event.title);
+    }
     render() {
         return (
             <div className="col-sm-4 py-2">
@@ -16,7 +19,7 @@ class EventCard extends React.Component {
                         <p>
                             <AccessTimeIcon/> {new Date(this.props.event.startDate).toLocaleString() + ' - ' + new Date(this.props.event.endDate).toLocaleString()}
                         </p>
-                        <p className="card-link access-event">Read More</p>
+                        <p className="card-link access-event" onClick={this.handleReadMore}>Read More</p>
                     </div>
                 </div>
             </div>

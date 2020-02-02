@@ -7,6 +7,7 @@ import AddEvent from "./components/AddEvent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AddIcon from '@material-ui/icons/Add';
+import EventDetailedInfo from "./components/EventDetailedInfo";
 
 class App extends React.Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class App extends React.Component {
         this.state = {
             alert: '',
             isUserLoggedIn: false,
-            displayAddEvent: false
+            displayAddEvent: false,
+            displayEventInfo: null
         }
     }
 
@@ -26,6 +28,10 @@ class App extends React.Component {
         this.setState({displayAddEvent: !this.state.displayAddEvent})
     };
 
+    handleReadMore = (event) => {
+        this.setState({displayEventInfo: event});
+    };
+
     render() {
         let componentToDisplay;
         if (!this.state.isUserLoggedIn) {
@@ -33,8 +39,10 @@ class App extends React.Component {
         } else {
             if (this.state.displayAddEvent) {
                 componentToDisplay = <AddEvent handleDisplayAddEvent={this.handleDisplayAddEvent}/>;
+            } else if(this.state.displayEventInfo){
+                componentToDisplay = <EventDetailedInfo eventInfo={this.state.displayEventInfo} handleReadMore={this.handleReadMore}/>
             } else {
-                componentToDisplay = <Events/>;
+                componentToDisplay = <Events handleReadMore={this.handleReadMore}/>;
             }
         }
         let displayAddEventButton;
