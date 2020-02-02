@@ -17,6 +17,7 @@ public class User extends CompactUser {
     private int numberOfAttendedGames = 0;
 
     private List<Badge> badges;
+    private Set<String> decidedEvents;
 
     public String getPassword() {
         return password;
@@ -41,8 +42,6 @@ public class User extends CompactUser {
     public List<Badge> getBadges() {
         return badges;
     }
-
-    private Set<String> decidedEvents;
 
     public void pushBadge(Badge badge) {
         if (badges == null) {

@@ -61,7 +61,7 @@ public class User extends CompactUser {
     }
 
     public void pushDecidedEvent(String event) {
-        if(decidedEvents == null) {
+        if (decidedEvents == null) {
             decidedEvents = new HashSet<>();
         }
         decidedEvents.add(event);

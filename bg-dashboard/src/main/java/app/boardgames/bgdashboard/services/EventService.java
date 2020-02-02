@@ -2,7 +2,8 @@ package app.boardgames.bgdashboard.services;
 
 import app.boardgames.bgdashboard.dao.EventRepository;
 import app.boardgames.bgdashboard.dao.UserRepository;
-import app.boardgames.bgdashboard.domain.*;
+import app.boardgames.bgdashboard.domain.AvailableGame;
+import app.boardgames.bgdashboard.domain.Event;
 import app.boardgames.bgdashboard.exceptions.EventNotFoundException;
 import app.boardgames.bgdashboard.exceptions.IllegalOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class EventService {
         if (event == null) {
             throw new EventNotFoundException("Could not stop the registration, as the event does not exists!");
 
-        } else if(!event.isEventStillAvailableForRegistration()){
+        } else if (!event.isEventStillAvailableForRegistration()) {
             throw new IllegalOperationException("The event is already closed!");
-        } else if(!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(finalGame)){
+        } else if (!event.getAvailableGames().stream().map(AvailableGame::getGameName).collect(Collectors.toSet()).contains(finalGame)) {
             throw new IllegalOperationException("The game is not available for this event!");
         }
         checkIfUserIsAllowed(event, email);
@@ -47,7 +48,7 @@ public class EventService {
     }
 
     private void checkIfUserIsAllowed(Event event, String email) {
-        if(event.getCreatedByEmail() != null && !event.getCreatedByEmail().equalsIgnoreCase(email)) {
+        if (event.getCreatedByEmail() != null && !event.getCreatedByEmail().equalsIgnoreCase(email)) {
             throw new IllegalOperationException("You are not allowed to edit this event!");
         }
     }

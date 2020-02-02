@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class InterestedUser implements Interested{
+public class InterestedUser implements Interested {
     private CompactUser user;
     private boolean hasConfirmed;
     private Set<BadgeByVoter> badges;
