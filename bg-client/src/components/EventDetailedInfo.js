@@ -14,7 +14,8 @@ class EventDetailedInfo extends React.Component {
         this.state = {
             event: props.eventInfo,
             availableGameOption: undefined,
-            dashboardAlert: null
+            dashboardAlert: null,
+            gameSuggestion: ''
         };
     }
 
@@ -60,6 +61,31 @@ class EventDetailedInfo extends React.Component {
         });
     };
 
+    handleSendGameSuggestion = (e) => {
+        e.preventDefault();
+        let cookies = new Cookies();
+        let config = {
+            headers: {
+                'Authorization': "Bearer " + cookies.get(TOKEN_COOKIE)
+            }
+        };
+        axios.put(API_HOST + '/api/core/suggestGame/' + this.state.event.title + '/' + this.state.gameSuggestion, null, config)
+            .then(res => {
+                if (res.status === 200) {
+                    this.setState({event: res.data});
+                    this.handleSuccess('The game was send to the organizer!');
+                }
+            }).catch((error) => {
+            if (error.response) {
+                this.handleError(error.response.data.message);
+            }
+        });
+    };
+
+    handleNewGameSuggestion = (e) => {
+        this.setState({gameSuggestion: e.target.value});
+    };
+
     handleChooseFinalGame =(event) => {
         this.setState({availableGameOption: event.target.value});
     };
@@ -103,6 +129,14 @@ class EventDetailedInfo extends React.Component {
         const finalAvailableGameOptions = this.state.event.availableGames.map((availableGame) =>
             <option key={availableGame.gameName} value={availableGame.gameName}>{availableGame.gameName}</option>
         );
+        let proposedGames;
+        if (!this.state.event.proposedGames) {
+            proposedGames = <p>There are no suggestions at the moment.</p>;
+        } else {
+            proposedGames = this.state.event.proposedGames.map((game) =>
+                <li className="list-group-item" key={game.gameName + ' - ' + game.user.email}>{game.gameName + ' - ' + game.user.email}</li>
+            );
+        }
 
         return (
             <React.Fragment>
@@ -115,7 +149,19 @@ class EventDetailedInfo extends React.Component {
                         <p className="blog-post-meta"><HomeIcon/> {this.state.event.fullAddress}</p>
                         <p>{this.state.event.description}</p>
                         {this.state.event.eventStillAvailableForRegistration? availableGamesList:null}
+
+                        <form className="form-inline" onSubmit={this.handleSendGameSuggestion}>
+                            <div className="form-group mb-2">
+                                <label htmlFor="newGame">Suggest a new game</label>
+                            </div>
+                            <div className="form-group mx-sm-3 mb-2">
+                                <input minLength="3" type="text" className="form-control" id="newGame" placeholder="Game" onChange={this.handleNewGameSuggestion} value={this.state.gameSuggestion}/>
+                            </div>
+                            <button type="submit" className="btn btn-primary mb-2">Send</button>
+                        </form>
+
                         <button type="button" className="btn btn-secondary btn-lg btn-block" id="goBackButton" onClick={this.handleGoBack}>Go back </button>
+
                     </div>
                     {this.state.alert}
                 </div>
@@ -136,7 +182,11 @@ class EventDetailedInfo extends React.Component {
                     </form>
 
                     <h6>Game suggestions</h6>
-                    {this.state.event.proposedGames == null? <p>There are no suggestions at the moment.</p>:<p>{this.state.event.proposedGames}</p>}
+                    <ul className="list-group list-group-flush">
+                        <ul className="list-group list-group-flush">
+                    {proposedGames}
+                        </ul>
+                    </ul>
                     <h6>Edit event</h6>{
                     //TODO: To implement edit
                 }
