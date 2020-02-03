@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Document(collection = "events")
@@ -106,6 +107,9 @@ public class Event {
 
     public void stopRegistration() {
         isEventStillAvailableForRegistration = false;
+        if(interestedPlayers == null) {
+            interestedPlayers = new HashSet<>();
+        }
         for (InterestedUser interestedUser : interestedPlayers) {
             interestedUser.update(title);
         }
