@@ -90,9 +90,9 @@ class EventDetailedInfo extends React.Component {
                 {//TODO: Display only for organizer
                      }
             <div className='stop-event-registration-body'>
-            <form onSubmit={this.handleStopEventRegistration}>
                 <h5>Event dashboard</h5>
                 <h6>Stop event registration</h6>
+            <form onSubmit={this.handleStopEventRegistration}>
                 <div className="form-group">
                 <select defaultValue='' className="form-control form-control-sm" value={this.state.availableGameOption} onChange={this.handleAvailableGame} required>
                     <option value="" disabled hidden>Choose here</option>
@@ -100,9 +100,17 @@ class EventDetailedInfo extends React.Component {
                 </select>
                 </div>
                 <button type="submit" className="btn btn-danger btn-lg btn-block" id="stopRegistrationButton">Stop event registration </button>
-            </form>
                 {this.state.alert}
+            </form>
+
+                <h6>Game suggestions</h6>
+                {this.state.event.proposedGames == null? <p>There are no suggestions at the moment.</p>:<p>{this.state.event.proposedGames}</p>}
+                <h6>Edit event</h6>{
+                //TODO: To implement edit
+            }
+                <button type="button" className="btn btn-primary btn-lg btn-block" id="editEventButton">Edit</button>
             </div>
+
             </React.Fragment>
         );
     }
