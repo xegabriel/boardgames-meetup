@@ -87,7 +87,8 @@ class EventDetailedInfo extends React.Component {
                     <button type="button" className="btn btn-secondary btn-lg btn-block" onClick={this.handleGoBack}>Go back </button>
                 </div>
             </div>
-
+                {//TODO: Display only for organizer
+                     }
             <div className='stop-event-registration-body'>
             <form onSubmit={this.handleStopEventRegistration}>
                 <h5>Event dashboard</h5>

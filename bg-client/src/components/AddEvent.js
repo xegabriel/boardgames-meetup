@@ -72,7 +72,7 @@ class AddEvent extends React.Component {
             'maximumPlayers': this.state.maximumPlayers,
             'availableGames': availableGamesAndVotersArray
         };
-        
+
         let cookies = new Cookies();
         let config = {
             headers: {
