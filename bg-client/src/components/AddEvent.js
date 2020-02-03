@@ -107,7 +107,7 @@ class AddEvent extends React.Component {
         return (
             <div className="add-event-body">
                 <p className="h2">Add event</p>
-                <form>
+                <form onSubmit={this.handleSaveEvent}>
                     <div className="form-group">
                         <label htmlFor="title">Title</label>
                         <input minLength="3" type="text" className="form-control" id="title" placeholder="Event Title"
@@ -153,9 +153,7 @@ class AddEvent extends React.Component {
                                placeholder="Available Boardgames" onChange={this.handleAvailableGames}
                                value={this.state.availableGames}/>
                     </div>
-                    <button type="submit" className="btn btn-primary btn-lg btn-block" value="Save"
-                            onClick={this.handleSaveEvent}>Save
-                    </button>
+                    <button type="submit" className="btn btn-primary btn-lg btn-block" value="Save">Save</button>
                     <button type="button" className="btn btn-secondary btn-lg btn-block" id="addEventGoBackButton"
                             onClick={this.handleGoBack}>Go Back
                     </button>

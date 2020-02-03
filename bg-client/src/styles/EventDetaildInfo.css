@@ -7,3 +7,27 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+
+.stop-event-registration-body {
+    border-radius: 5rem;
+    background-color: #ffffff;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.eventAvailable {
+    color: #3cc700;
+    font-weight: bold;
+}
+
+.eventClosed {
+    color:red;
+    font-weight: bold;
+}
+
+#stopRegistrationButton {
+    margin-bottom: 0.5em;
+}
