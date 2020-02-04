@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bg-master-deployment
+  namespace: bg-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bg-master
+  template:
+    metadata:
+      labels:
+        app: bg-master
+    spec:
+      containers:
+        - name: bg-master
+          image: 1gabriel/bg-master:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: mongodb.uri
+              valueFrom:
+                secretKeyRef:
+                  key: mongodb.uri
+                  name: bg-secret
