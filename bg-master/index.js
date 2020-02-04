@@ -8,8 +8,8 @@ let db;
 MongoClient.connect(process.env.MONGODB_URI || mongoDbConString, (err, database) => {
   if (err) return console.log(err)
   db = database.db('test')
-  app.listen(process.env.PORT || 8085, () => {
-    console.log('listening on 8085')
+  app.listen(process.env.PORT || 8080, () => {
+    console.log('listening on 8080')
   })
 })
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
-app.get('/topUsers', (req, res) => {
+app.get('/api/master/topUsers', (req, res) => {
   let noToReturn = 3;
   if (req.query && req.query['no']) {
     noToReturn = parseInt(req.query['no']);
