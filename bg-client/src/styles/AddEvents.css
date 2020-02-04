@@ -24,3 +24,13 @@
 #addEventGoBackButton {
     margin-bottom: 0.5em;
 }
+
+.lightButton {
+    background-color: #d39e00 !important;
+    border-color: #f6bc14 !important;
+}
+
+.darkButton {
+    background-color: #ff6817 !important;
+    border-color: #ff5e2b !important;
+}

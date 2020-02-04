@@ -160,7 +160,7 @@ class EventDetailedInfo extends React.Component {
                             <button type="submit" className="btn btn-primary mb-2">Send</button>
                         </form>
 
-                        <button type="button" className="btn btn-secondary btn-lg btn-block" id="goBackButton" onClick={this.handleGoBack}>Go back </button>
+                        <button type="button" className="darkButton btn btn-secondary btn-lg btn-block" id="goBackButton" onClick={this.handleGoBack}>Go back </button>
 
                     </div>
                     {this.state.alert}

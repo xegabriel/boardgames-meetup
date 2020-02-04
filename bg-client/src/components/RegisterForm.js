@@ -102,13 +102,13 @@ class RegisterForm extends React.Component {
                                     <label htmlFor="inputPassword">Password</label>
                                 </div>
 
-                                <button className="btn btn-lg btn-success btn-block text-uppercase"
+                                <button className="lightButton btn btn-lg btn-success btn-block text-uppercase"
                                         onClick={this.handleRegister}
                                         type="submit"><i className="fab fa-google mr-2"/> Register
                                 </button>
                             </form>
                             <div className="my-4">
-                                <button className="btn btn-lg btn-secondary btn-block text-uppercase"
+                                <button className="darkButton btn btn-lg btn-secondary btn-block text-uppercase"
                                         type="submit" onClick={this.handleBack}>Back
                                 </button>
                             </div>

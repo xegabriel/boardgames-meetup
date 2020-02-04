@@ -153,8 +153,8 @@ class AddEvent extends React.Component {
                                placeholder="Available Boardgames" onChange={this.handleAvailableGames}
                                value={this.state.availableGames}/>
                     </div>
-                    <button type="submit" className="btn btn-primary btn-lg btn-block" value="Save">Save</button>
-                    <button type="button" className="btn btn-secondary btn-lg btn-block" id="addEventGoBackButton"
+                    <button type="submit" className="lightButton btn btn-primary btn-lg btn-block" value="Save">Save</button>
+                    <button type="button" className="darkButton btn btn-secondary btn-lg btn-block" id="addEventGoBackButton"
                             onClick={this.handleGoBack}>Go Back
                     </button>
                     {this.state.alert}

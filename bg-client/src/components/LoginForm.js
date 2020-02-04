@@ -127,12 +127,12 @@ class LoginForm extends React.Component {
                                     <label className="custom-control-label" htmlFor="customCheck1">Remember
                                         password</label>
                                 </div>
-                                <button className="btn btn-lg btn-primary btn-block text-uppercase"
+                                <button className="lightButton btn btn-lg btn-primary btn-block text-uppercase"
                                         type="submit">Sign in
                                 </button>
                             </form>
                             <div className="my-4">
-                                <button className="btn btn-lg btn-secondary btn-block text-uppercase"
+                                <button className="darkButton btn btn-lg btn-secondary btn-block text-uppercase"
                                         onClick={this.handleRegister}
                                         type="submit"><i className="fab fa-google mr-2"/> Go to registration
                                 </button>

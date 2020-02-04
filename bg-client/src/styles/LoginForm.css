@@ -134,4 +134,15 @@
 #boardgamesMeetupTitle {
     margin-top: 5%;
     color: #fff;
+    font-size: 3em;
+}
+
+.lightButton {
+    background-color: #d39e00 !important;
+    border-color: #f6bc14 !important;
+}
+
+.darkButton {
+    background-color: #ff6817 !important;
+    border-color: #ff5e2b !important;
 }
