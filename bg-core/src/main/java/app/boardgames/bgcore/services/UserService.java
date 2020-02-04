@@ -54,7 +54,7 @@ public class UserService {
         }
         BadgeFactory badgeFactory = new BadgeFactory();
         Badge badge = badgeFactory.getBadge(voteType);
-        event.pushBadge(votedUser, new BadgeByVoter(badge, voterUser));
+        event.pushBadge(votedUser, new BadgeByVoter(badge, voterUser.getEmail()));
         votedUser.pushBadge(badge);
         eventRepository.save(event);
         userRepository.save(votedUser);

@@ -4,9 +4,9 @@ import app.boardgames.bgdashboard.domain.badges.Badge;
 
 public class BadgeByVoter {
     private Badge badge;
-    private CompactUser voter;
+    private String voter;
 
-    public BadgeByVoter(Badge badge, CompactUser voter) {
+    public BadgeByVoter(Badge badge, String voter) {
         this.badge = badge;
         this.voter = voter;
     }
@@ -15,7 +15,7 @@ public class BadgeByVoter {
         return badge;
     }
 
-    public CompactUser getVoter() {
+    public String getVoter() {
         return voter;
     }
 }
