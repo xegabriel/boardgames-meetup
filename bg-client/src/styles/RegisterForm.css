@@ -126,3 +126,7 @@
     color: #fff;
     font-size: 3em;
 }
+
+#registerRow {
+    opacity: 90%;
+}
