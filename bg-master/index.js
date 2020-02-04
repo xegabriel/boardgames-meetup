@@ -2,13 +2,14 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
+const mongoDbConString = 'mongodb://vivi:1234@boardgamescluster-shard-00-00-2fdfc.gcp.mongodb.net:27017,boardgamescluster-shard-00-01-2fdfc.gcp.mongodb.net:27017,boardgamescluster-shard-00-02-2fdfc.gcp.mongodb.net:27017/test?ssl=true&replicaSet=BoardgamesCluster-shard-0&authSource=admin&retryWrites=true&w=majority';
 let db;
 
-MongoClient.connect('mongodb://vivi:1234@boardgamescluster-shard-00-00-2fdfc.gcp.mongodb.net:27017,boardgamescluster-shard-00-01-2fdfc.gcp.mongodb.net:27017,boardgamescluster-shard-00-02-2fdfc.gcp.mongodb.net:27017/test?ssl=true&replicaSet=BoardgamesCluster-shard-0&authSource=admin&retryWrites=true&w=majority', (err, database) => {
+MongoClient.connect(process.env.MONGODB_URI || mongoDbConString, (err, database) => {
   if (err) return console.log(err)
   db = database.db('test')
-  app.listen(process.env.PORT || 3000, () => {
-    console.log('listening on 3000')
+  app.listen(process.env.PORT || 8080, () => {
+    console.log('listening on 8080')
   })
 })
 
