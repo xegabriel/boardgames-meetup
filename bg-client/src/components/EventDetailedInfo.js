@@ -169,6 +169,12 @@ class EventDetailedInfo extends React.Component {
                 }
                 <div className='stop-event-registration-body'>
                     <h5>Event dashboard</h5>
+                    <h6>Game suggestions</h6>
+                    <ul className="list-group list-group-flush">
+                        <ul className="list-group list-group-flush">
+                    {proposedGames}
+                        </ul>
+                    </ul>
                     <h6>Stop event registration</h6>
                     <form onSubmit={this.handleStopEventRegistration}>
                         <div className="form-group">
@@ -180,17 +186,6 @@ class EventDetailedInfo extends React.Component {
                         <button type="submit" className="btn btn-danger btn-lg btn-block" id="stopRegistrationButton">Stop event registration </button>
                         {this.state.dashboardAlert}
                     </form>
-
-                    <h6>Game suggestions</h6>
-                    <ul className="list-group list-group-flush">
-                        <ul className="list-group list-group-flush">
-                    {proposedGames}
-                        </ul>
-                    </ul>
-                    <h6>Edit event</h6>{
-                    //TODO: To implement edit
-                }
-                    <button type="button" className="btn btn-primary btn-lg btn-block" id="editEventButton">Edit</button>
                 </div>
 
             </React.Fragment>
