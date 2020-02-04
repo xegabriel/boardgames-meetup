@@ -73,7 +73,7 @@ class RegisterForm extends React.Component {
                     <div className="card card-register my-5">
                         <div className="card-body">
                             <h5 className="card-title text-center">Register</h5>
-                            <form className="form-signin" onSubmit={this.handleSignIn}>
+                            <form className="form-signin" onSubmit={this.handleRegister}>
                                 <div className="form-label-group">
                                     <input type="email" id="inputEmail" className="form-control"
                                            placeholder="Email address" required autoFocus
@@ -103,7 +103,6 @@ class RegisterForm extends React.Component {
                                 </div>
 
                                 <button className="lightButton btn btn-lg btn-success btn-block text-uppercase"
-                                        onClick={this.handleRegister}
                                         type="submit"><i className="fab fa-google mr-2"/> Register
                                 </button>
                             </form>
