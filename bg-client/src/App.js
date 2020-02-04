@@ -46,7 +46,7 @@ class App extends React.Component {
             }
         }
         let displayAddEventButton;
-        if (!this.state.displayAddEvent) { //TODO: Display only for organizer
+        if (!this.state.displayAddEvent && this.state.isUserLoggedIn) { //TODO: Display only for organizer
             displayAddEventButton = <span className="float-add-event" onClick={this.handleDisplayAddEvent}><AddIcon
                 className="plus-icon-float"/></span>;
         }
