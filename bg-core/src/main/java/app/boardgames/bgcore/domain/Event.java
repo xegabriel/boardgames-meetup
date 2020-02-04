@@ -129,7 +129,7 @@ public class Event {
 
     public void confirmAttendance(CompactUser user) {
         for (InterestedUser interestedUser : interestedPlayers) {
-            if (interestedUser.getUser().equals(user)) {
+            if (interestedUser.getUser().equals(user.getEmail())) {
                 if (interestedUser.isHasConfirmed()) {
                     throw new EventAlreadyConfirmedException("The event is already confirmed!");
                 }
@@ -141,7 +141,7 @@ public class Event {
 
     public void pushBadge(User votedUser, BadgeByVoter badgeByVoter) {
         for (InterestedUser interestedUser : interestedPlayers) {
-            if (interestedUser.getUser().equals(votedUser)) {
+            if (interestedUser.getUser().equals(votedUser.getEmail())) {
                 interestedUser.pushBadge(badgeByVoter);
                 break;
             }
