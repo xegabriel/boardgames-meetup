@@ -8,11 +8,11 @@ import java.util.Objects;
 import java.util.Set;
 
 public class InterestedUser implements Interested {
-    private CompactUser user;
+    private String user;
     private boolean hasConfirmed;
     private Set<BadgeByVoter> badges;
 
-    public CompactUser getUser() {
+    public String getUser() {
         return user;
     }
 
@@ -51,7 +51,7 @@ public class InterestedUser implements Interested {
     @Override
     public void update(String eventTitle) {
         UserRepository userRepository = (UserRepository) SpringConfiguration.contextProvider().getApplicationContext().getBean("userRepository");
-        User user = userRepository.findByEmail(getUser().getEmail());
+        User user = userRepository.findByEmail(getUser());
         user.pushDecidedEvent(eventTitle);
         userRepository.save(user);
     }

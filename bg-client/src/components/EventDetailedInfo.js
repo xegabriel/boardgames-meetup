@@ -120,7 +120,7 @@ class EventDetailedInfo extends React.Component {
                     <input className="form-check-input" type="radio" name="availableGames" id={availableGame.gameName}
                            value={availableGame.gameName} onClick={this.handleVoteAvailableGame}/>
                     <label className="form-check-label" htmlFor="exampleRadios2">
-                        {availableGame.gameName} - {!availableGame.votesFromUsers ? 0 : availableGame.votesFromUsers.length} Votes
+                        {availableGame.gameName} - {!availableGame.votesFromEmail ? 0 : availableGame.votesFromEmail.length} Votes
                     </label>
                 </div>
             </div>
@@ -134,7 +134,7 @@ class EventDetailedInfo extends React.Component {
             proposedGames = <p>There are no suggestions at the moment.</p>;
         } else {
             proposedGames = this.state.event.proposedGames.map((game) =>
-                <li className="list-group-item" key={game.gameName + ' - ' + game.user.email}>{game.gameName + ' - ' + game.user.email}</li>
+                <li className="list-group-item" key={game.gameName + ' - ' + game.userEmail}>{game.gameName + ' - ' + game.userEmail}</li>
             );
         }
 

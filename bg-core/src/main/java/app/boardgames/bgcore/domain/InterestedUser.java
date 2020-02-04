@@ -5,16 +5,16 @@ import java.util.Objects;
 import java.util.Set;
 
 public class InterestedUser {
-    private CompactUser user;
+    private String user;
     private boolean hasConfirmed;
     private Set<BadgeByVoter> badges;
 
-    public InterestedUser(CompactUser user) {
+    public InterestedUser(String user) {
         this.user = user;
         this.hasConfirmed = false;
     }
 
-    public CompactUser getUser() {
+    public String getUser() {
         return user;
     }
 

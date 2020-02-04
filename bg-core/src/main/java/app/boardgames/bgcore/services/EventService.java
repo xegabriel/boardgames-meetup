@@ -50,7 +50,7 @@ public class EventService {
         if (availableGameOptional.isPresent()) {
             AvailableGame availableGameVotes = availableGameOptional.get();
             event.getAvailableGames().remove(availableGameVotes);
-            availableGameVotes.pushOrRemoveVote(user);
+            availableGameVotes.pushOrRemoveVote(user.getEmail());
             event.getAvailableGames().add(availableGameVotes);
         }
 
@@ -68,7 +68,7 @@ public class EventService {
             throw new EventIsDisabledException("The event is not available for proposing games !");
         }
 
-        event.pushSuggestedGame(new ProposedGame(gameName, user));
+        event.pushSuggestedGame(new ProposedGame(gameName, user.getEmail()));
         return eventRepository.save(event);
     }
 
@@ -83,7 +83,7 @@ public class EventService {
             throw new EventIsDisabledException("The event is not available for attending !");
         }
 
-        event.pushOrRemoveInterestedPlayer(new InterestedUser(user));
+        event.pushOrRemoveInterestedPlayer(new InterestedUser(user.getEmail()));
         return eventRepository.save(event);
     }
 

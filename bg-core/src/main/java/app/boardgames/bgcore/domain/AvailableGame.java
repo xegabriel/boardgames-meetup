@@ -5,24 +5,24 @@ import java.util.Set;
 
 public class AvailableGame {
     private String gameName;
-    private Set<CompactUser> votesFromUsers;
+    private Set<String> votesFromEmail;
 
     public String getGameName() {
         return gameName;
     }
 
-    public Set<CompactUser> getVotesFromUsers() {
-        return votesFromUsers;
+    public Set<String> getVotesFromEmail() {
+        return votesFromEmail;
     }
 
-    public void pushOrRemoveVote(CompactUser votingUser) {
-        if (votesFromUsers == null || votesFromUsers.isEmpty()) {
-            votesFromUsers = new HashSet<>();
-            votesFromUsers.add(votingUser);
-        } else if (!votesFromUsers.contains(votingUser)) {
-            votesFromUsers.add(votingUser);
+    public void pushOrRemoveVote(String votingUser) {
+        if (votesFromEmail == null || votesFromEmail.isEmpty()) {
+            votesFromEmail = new HashSet<>();
+            votesFromEmail.add(votingUser);
+        } else if (!votesFromEmail.contains(votingUser)) {
+            votesFromEmail.add(votingUser);
         } else {
-            votesFromUsers.remove(votingUser);
+            votesFromEmail.remove(votingUser);
         }
     }
 }

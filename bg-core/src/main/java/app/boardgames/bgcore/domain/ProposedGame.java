@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class ProposedGame {
     private String gameName;
-    private CompactUser user;
+    private String userEmail;
 
-    public ProposedGame(String gameName, CompactUser user) {
+    public ProposedGame(String gameName, String userEmail) {
         this.gameName = gameName;
-        this.user = user;
+        this.userEmail = userEmail;
     }
 
     public String getGameName() {
         return gameName;
     }
 
-    public CompactUser getUser() {
-        return user;
+    public String getUserEmail() {
+        return userEmail;
     }
 
     @Override
@@ -25,11 +25,11 @@ public class ProposedGame {
         if (o == null || getClass() != o.getClass()) return false;
         ProposedGame that = (ProposedGame) o;
         return Objects.equals(gameName, that.gameName) &&
-                Objects.equals(user, that.user);
+                Objects.equals(userEmail, that.userEmail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(gameName, user);
+        return Objects.hash(gameName, userEmail);
     }
 }
